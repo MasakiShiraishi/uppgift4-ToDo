@@ -5,6 +5,7 @@ const todoForm = document.getElementById("todo-form");
 const newTodoInput = document.getElementById("new-todo");
 // ul id="todo-list"
 const todoList = document.getElementById("todo-list");
+const info = document.querySelector("small");
 
 // Create an empty array to store the tasks
 const todosArray = [];
