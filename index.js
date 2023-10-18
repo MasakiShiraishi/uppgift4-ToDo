@@ -46,6 +46,9 @@ todoForm.addEventListener("submit", function (e) { // e = event
         info.innerText = "Input must not be empty";
         return;
     }
+    else {
+        info.innerText = "";
+    }
     // Add the new task to the "todosArray" array
     todosArray.push(todoText);
     console.log(todoText);
