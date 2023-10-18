@@ -42,7 +42,7 @@ todoForm.addEventListener("submit", function (e) { // e = event
     console.log('lagt till todolistan');
     if (todoText === "") {
         // If the input field is empty, do nothing
-        alert('Du måste skriva något i fältet.')
+        info.innerText = "Input must not be empty";
         return;
     }
     // Add the new task to the "todosArray" array
