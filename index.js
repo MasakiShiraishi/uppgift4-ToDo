@@ -1,4 +1,4 @@
-// Hämta formuläret, textfältet och listan från DOM
+// Get the form, input field, and list from the DOM
 // form id="todo-form"
 const todoForm = document.getElementById("todo-form");
 // input id="new-todo"
@@ -6,69 +6,69 @@ const newTodoInput = document.getElementById("new-todo");
 // ul id="todo-list"
 const todoList = document.getElementById("todo-list");
 
-// Skapa en tom array för att lagra uppgifterna
+// Create an empty array to store the tasks
 const todosArray = [];
 console.log(todosArray);
 
- // Skapa en funktion för att lägga till nya uppgifter
+ // Create a function to add new tasks to the list
  function addTodoToList(todoText) {
-      // Skapa ett nytt <li> element och lägg till uppgiften
-      const list = document.createElement("li");
-      list.textContent = todoText;
+     // Create a new <li> element and add the task text
+    const list = document.createElement("li");
+    list.textContent = todoText;
 
-    //  -----Klicka på en liten papperskorg på varje rad 
-    // för att radera den uppgiften ur listan.---
-    // det funkar med id="todo-list" men bästa praktisk med html element
-    // det blir konstig ser ut med li eller ul
+   // Click on a small trash can icon on each row 
+    // to remove that task from the list.
+    // It works with id="todo-list" but it's best practice to use HTML elements.
+    // It looks weird with li or ul.
     const deleteIcon = document.createElement("span");   
     deleteIcon.innerHTML = "&#128465";
-    //icon referer från URL:https://emojigraph.org/sv/litter-in-bin-sign/
-    //deleteIcon.innerHTML = "🚮"; 
+    //icon reference from URL:https://emojigraph.org/en/litter-in-bin-sign/
+    //deleteIcon.innerHTML = "🚮";  
     deleteIcon.classList.add("delete-task");
 
-    // Lägg till "&#128465" i <li> elementet
+    // Add "&#128465" inside the <li> element
     list.appendChild(deleteIcon);
 
-    // Lägg till det nya <li> elementet i listan
+     // Add the new <li> element to the list
     todoList.appendChild(list);
 }
 
-// -------Lägg till en händelselyssnare på formuläret----till id="todo-form"
+// Add an event listener to the form with id="todo-form"
 todoForm.addEventListener("submit", function (e) { // e = event
-    e.preventDefault(); // Förhindra standardformulärskickning
+    e.preventDefault(); // Prevent default form submission
 
-    // Hämta värdet från textfältet och ta bort inledande och avslutande mellanslag
-    const todoText = newTodoInput.value.trim();
+    // Get the value from the input field and remove leading/trailing spaces
+     const todoText = newTodoInput.value.trim();
     console.log('lagt till todolistan');
     if (todoText === "") {
-        // Om textfältet är tomt, gör ingenting
+        // If the input field is empty, do nothing
         alert('Du måste skriva något i fältet.')
         return;
     }
-    // Lägg till den nya uppgiften i arrayen "todosArray"
+    // Add the new task to the "todosArray" array
     todosArray.push(todoText);
     console.log(todoText);
-    // Anropa funktionen för att lägga till uppgiften i listan
+    // Call the function to add the task to the list
     addTodoToList(todoText);    
 
      newTodoInput.value = "";
 });
-//---Uppdatera en liten etikett någonstans med antal uppgifter som man gjort klart.---
+// Update a small label somewhere with the number of completed tasks.
 let completedTaskCount = 0;
 
 
-// ---Funktion som anropas varje gång en uppgift markeras som avklarad/ouppklarad----
+// Function that is called every time a task is marked as completed/uncompleted
 function updateCompletedTaskCount() {
-    // .completed-task är css, querySelectorAll peker på där
+    // .completed-task is a CSS class, querySelectorAll points to where it is used
     completedTaskCount = document.querySelectorAll(".completed-task").length;
-    // Uppdatera texten i etiketten som visar antalet avklarade uppgifter
-    // kommer från "function updateTaskCountLabel()"
-    updateTaskCountLabel();
+    // Update the text in the label showing the number of completed tasks
+    // comes from "function updateTaskCountLabel()"
+   updateTaskCountLabel();
 }
 
-// Funktion som uppdaterar texten i etiketten
+// Function that updates the text in the label
 function updateTaskCountLabel() {
-    // "completedTasks" är HTML
+    // "completedTasks" is an HTML id
     const taskCountLabel = document.getElementById("completedTasks");
     taskCountLabel.textContent = completedTaskCount;
 }
@@ -76,18 +76,18 @@ function updateTaskCountLabel() {
 todoList.addEventListener("click", function(event) {
     const clickedElement = event.target;
     
-       //  ---Klicka på en liten papperskorg på varje rad 
-    // för att radera den uppgiften ur listan.---
-
-    // Kontrollera om det klickade elementet är en papperskorg (klassen "delete-task")
+     // Click on a small trash can icon on each row 
+    // to remove that task from the list.
+    
+    // Check if the clicked element has a class "delete-task"
     if (clickedElement.classList.contains("delete-task")) {
-        // Hitta det närmaste förälderelementet (<li>) och ta bort det från listan
+        // Find the nearest parent element (<li>) and remove it from the list
         const listItem = clickedElement.parentElement; // Förälderselementet (<li>) hämtas
         
 
         if (listItem) {
-            listItem.remove(); // Ta bort uppgiften från listan
-            console.log("A task deleted in todo list.")
+            listItem.remove(); // Remove the task from the list
+            console.log("A task deleted in the todo list.");
             console.log(listItem);
            
 
@@ -95,24 +95,23 @@ todoList.addEventListener("click", function(event) {
         }
     }
 
-//---Klicka på en uppgift <li> i listan för att markera den som klar--
-
-    // Kontrollera om det klickade elementet är en <li> inom todoList
+// Click on a task <li> in the list to mark it as completed
+    // Check if the clicked element is an <li> inside todoList
     if (clickedElement.tagName === "LI") {
-        // Kolla om uppgiften redan är markerad som klar
+        // Check if the task is already marked as completed
         if (clickedElement.classList.contains("completed-task")) {
-            // Om den är klar, ta bort klassen för att ångra markeringen
+            // If it's completed, remove the class to unmark it
             clickedElement.classList.remove("completed-task");
         } else {
-            // Om den inte är klar, lägg till klassen för att markera den som klar
+            // If it's not completed, add the class to mark it as completed
             clickedElement.classList.add("completed-task");
         }
-        // avklarad/ouppklarad, uppdatera räkningen
+        // completed/uncompleted, update the count
         updateCompletedTaskCount();
     }
 });
 
-// initiala räkningen när sidan laddas
+// Initial count when the page loads
 updateCompletedTaskCount();
 
 
