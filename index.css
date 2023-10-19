@@ -1,18 +1,18 @@
 .completed-task {
   text-decoration: line-through;
-  /* för att markera den som klar */
+  /* To mark it as completed */
   color: #999;
   background-color: #926a6a;
   background-size: 20px;
   color: #6f84da;
 }
 
-/* justering i deleteIcon: "&#128465" */
+/* Adjustment in deleteIcon: "&#128465" */
 .delete-task {
   color: #201f1f;
   cursor: no-drop;
   transition: transform 0.2s, color 0.2s;
-  /* Lägg till animationseffekter */
+  /* Add animation effects */
   margin-left: 50px;
 }
 
