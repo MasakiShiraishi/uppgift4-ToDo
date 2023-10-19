@@ -37,3 +37,24 @@ body {
 h1{
     font-size: 250%;
 }
+ul{
+    list-style: none;
+}
+li{
+    /* animation with a duration of 0.5 second, 
+    easing, no delay, 1 iteration */
+    animation: fadeInUp 0.5s ease 0s 1;
+}
+
+@keyframes fadeInUp{
+    /* completely transparent and moved up at original position*/    
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      /* completely opaque and stays at its original position */    
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
