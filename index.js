@@ -44,6 +44,12 @@ todoForm.addEventListener("submit", function (e) { // e = event
     if (todoText === "") {
         // If the input field is empty, do nothing
         info.innerText = "Input must not be empty";
+        //-------this is new------
+        info.classList.add("flash");
+        setTimeout(() => {
+            info.classList.remove("flash");
+          }, 2000);
+        //--------------------------------
         return;
     }
     else {
