@@ -1,0 +1,42 @@
+section{
+          margin-top: 40px;
+          background-color: white;
+          width: 40vw;               
+
+}
+body {
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;          
+          /* Background gradient from light at the top to dark at the bottom */
+          background: linear-gradient(to bottom, #F4D6CF 0%, #F47B71 100%);
+          background-size: cover; /* Expand background image to cover the entire element, preventing repetition */
+          background-repeat: no-repeat; /* Disable background image repetition */
+          background-attachment: fixed; /* Fix the background image even when scrolling */
+          color: black;
+          font-family: Arial, sans-serif;
+          animation: fadeInDown 1s ease; /* Animation for fading in and moving down */
+      }
+      
+      
+     /* Keyframe animation to fade in and move down */
+@keyframes fadeInDown {
+          /* At 0%, the element is translated upwards by 70% */
+          0% {
+              transform: translateY(-70%);
+          }
+          /* At 50%, the element is translated upwards by 30% */
+          50% {
+              transform: translateY(30%);
+          }
+          /* At 100%, the element is at its final position (translated upwards by 0%) */
+          100% {
+              transform: translateY(0);
+          }
+      }
+      
+      
+      
+      
