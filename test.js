@@ -1,53 +1,87 @@
-// Hämta formuläret, textfältet och listan från DOM
-// form id="todo-form"
+
 const todoForm = document.getElementById("todo-form");
-// input id="new-todo"
 const newTodoInput = document.getElementById("new-todo");
-// ul id="todo-list"
 const todoList = document.getElementById("todo-list");
-// Skapa en tom array för att lagra uppgifterna
-const todos = [];
-let todoslist = todos.length;
+const info = document.querySelector("small");
 
-// Lägg till en händelselyssnare på formuläret
-todoForm.addEventListener("submit", function (e) {
-          e.preventDefault(); // Förhindra standardformulärskickning
+const todosArray = [];
+console.log(todosArray);
 
-          // Hämta värdet från textfältet och ta bort inledande och avslutande mellanslag
-          const todoText = newTodoInput.value.trim();
+ function addTodoToList(todoText) {
+    const list = document.createElement("li");
+    const listText = document.createElement("p");
+    listText.textContent = todoText;
+    list.appendChild(listText);
 
-          if (todoText === "") {
-                    // Om textfältet är tomt, gör ingenting
-                    alert('Du måste skriva något.')
-                    return;
-          }
+    const deleteIcon = document.createElement("span");   
+    deleteIcon.innerHTML = "&#128465";
+    //icon reference from URL:https://emojigraph.org/en/litter-in-bin-sign/
+    //deleteIcon.innerHTML = "🚮";  
+    deleteIcon.classList.add("delete-task");
+    list.appendChild(deleteIcon);
+    todoList.appendChild(list);
+}
 
-          // Skapa ett nytt <li> element och lägg till uppgiften
-          const list = document.createElement("li");
-          list.textContent = todoText;
+todoForm.addEventListener("submit", function (e) { 
+    e.preventDefault(); 
 
-          // Lägg till det nya <li> elementet i listan
-          todoList.appendChild(list);
-
-          // Rensa textfältet
-          newTodoInput.value = "";
-
-          // Lägg till uppgiften i todos-arrayen
-          todos.push(todoText);
-
-          // Uppdatera demo-elementet med den uppdaterade todos-listan
-          let text = document.getElementById("todo-list").innerHTML;
-
-          text = "<ul>";
-          for (let i = 0; i < todos.length; i++) {
-                    text += "<li>" + todos[i] + "</li>";
-          }
-          text += "</ul>";
-
-          
+     const todoText = newTodoInput.value.trim();
+    console.log('lagt till todolistan');
+    if (todoText === "") {
+        
+        info.innerText = "Input must not be empty";
+        //-------this is new------
+        info.classList.add("flash");
+        setTimeout(() => {
+            info.classList.remove("flash");
+          }, 2000);
+        //--------------------------------
+        return;
+    }
+    else {
+        info.innerText = "";
+    }
+   
+    todosArray.push(todoText);
+    console.log(todoText);    
+    addTodoToList(todoText); 
+    newTodoInput.value = "";
 });
 
+let completedTaskCount = 0;
+// Function that is called every time a task is marked as completed/uncompleted
+function updateCompletedTaskCount() {    
+    completedTaskCount = document.querySelectorAll(".completed-task").length;    
+   updateTaskCountLabel();
+}
 
+function updateTaskCountLabel() {    
+    const taskCountLabel = document.getElementById("completedTasks");
+    taskCountLabel.textContent = completedTaskCount;
+}
 
+todoList.addEventListener("click", function(event) {
+    const clickedElement = event.target;    
+    // Check if the clicked element has a class "delete-task"
+    if (clickedElement.classList.contains("delete-task")) {
+        const listItem = clickedElement.parentElement; 
+        if (listItem) {
+            listItem.remove(); 
+            console.log("A task deleted in the todo list.");
+            console.log(listItem);          
 
-//alert('Du måste skriva något.')
+            updateCompletedTaskCount();
+        }
+    }
+
+    if (clickedElement.tagName === "P") {
+        if (clickedElement.classList.contains("completed-task")) {
+            clickedElement.classList.remove("completed-task");
+        } else {            
+            clickedElement.classList.add("completed-task");
+        }
+        
+        updateCompletedTaskCount();
+    }
+});
+updateCompletedTaskCount();
