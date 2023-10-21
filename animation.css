@@ -78,3 +78,28 @@ li{
         text-align: center;
         animation-fill-mode: forwards;
     }
+
+    .completed-task{
+        animation: fadeToGray 0.5s ease forwards; 
+        
+      }
+      .ul{
+        text-decoration: line-through;
+      }
+      
+      .span{
+        text-decoration: none;
+        margin-left: 50px;
+      }
+      
+    @keyframes fadeToGray{
+        0% {    
+            ocapcity:1;        
+            color: black;
+        }
+        100% {
+            opacity: 0.6;            
+            color: grey;
+        }
+    }
+    
