@@ -1,8 +1,13 @@
 
 section{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 0;
     background-color: white;
-    width: 40vw;              
+    width: 40vw;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;               
 }
 body {
     margin: 0;
@@ -36,14 +41,36 @@ body {
 }
 h1{
     font-size: 250%;
+    margin: 10PX;
+}
+h5{
+  margin: 10PX;
 }
 ul{
     list-style: none;
+    margin:0;
+    padding:0;
 }
 li{
+    display: flex;
+  justify-content: center;
+    align-items: center;  
+    margin:5px 0;
+    letter-spacing: 2px;
     /* animation with a duration of 0.5 second, 
     easing, no delay, 1 iteration */
     animation: fadeInUp 0.5s ease 0s 1;
+}
+p{
+    margin:0;
+    padding:0;
+}
+.delete-task{
+  color: #201f1f;
+  cursor: no-drop;
+  transition: transform 0.2s, color 0.2s;
+  /* -Add animation effects -*/
+  margin-left: 25px;
 }
 
 @keyframes fadeInUp{
@@ -78,19 +105,12 @@ li{
         text-align: center;
         animation-fill-mode: forwards;
     }
-
     .completed-task{
         animation: fadeToGray 0.5s ease forwards; 
-        
-      }
-      .ul{
         text-decoration: line-through;
-      }
+        
+      }     
       
-      .span{
-        text-decoration: none;
-        margin-left: 50px;
-      }
       
     @keyframes fadeToGray{
         0% {    
