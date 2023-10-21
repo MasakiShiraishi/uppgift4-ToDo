@@ -9,8 +9,10 @@ console.log(todosArray);
 
  function addTodoToList(todoText) {
     const list = document.createElement("li");
-    const listText = document.createElement("p");
+    // Create a new paragraph element 
+     const listText = document.createElement("p");
     listText.textContent = todoText;
+    // Append "p" element to "li"  
     list.appendChild(listText);
 
     const deleteIcon = document.createElement("span");   
@@ -73,7 +75,7 @@ todoList.addEventListener("click", function(event) {
             updateCompletedTaskCount();
         }
     }
-
+                   // change "LI" to "P"
     if (clickedElement.tagName === "P") {
         if (clickedElement.classList.contains("completed-task")) {
             clickedElement.classList.remove("completed-task");
