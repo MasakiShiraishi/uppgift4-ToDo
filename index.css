@@ -1,14 +1,6 @@
-.completed-task {
-  text-decoration: line-through;
-  /* -To mark it as completed -*/
-  color: #999;
-  background-color: #926a6a;
-  background-size: 20px;
-  color: #6f84da;
-}
-
 /* -Adjustment in deleteIcon: "&#128465" -*/
-.delete-task {
+.delete-task span{
+  text-decoration: none ;
   color: #201f1f;
   cursor: no-drop;
   transition: transform 0.2s, color 0.2s;
@@ -16,10 +8,20 @@
   margin-left: 50px;
 }
 
-.delete-task:hover {
+.completed-task {
+  text-decoration: line-through;
+  /* -To mark it as completed -*/
+  color: black;
+  /*background-color: #926a6a;
+  background-size: 20px;
+  color: #6f84da;*/
+}
+
+
+/*.delete-task:hover {
   color: #ff5733;
   background-color: aquamarine;
-}
+}*/
 
 h1{
   font-style: italic;
@@ -33,7 +35,7 @@ p{
 li {
   margin-left: 33%;
   margin-top: 1.5%;
-  color: red;
+  /*color:red;*/
 }
 
 
