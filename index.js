@@ -26,7 +26,7 @@ console.log(todosArray);
     //icon reference from URL:https://emojigraph.org/en/litter-in-bin-sign/
     //deleteIcon.innerHTML = "🚮";  
     deleteIcon.classList.add("delete-task");
-
+    
     // Add "&#128465" inside the <li> element
     list.appendChild(deleteIcon);
 
